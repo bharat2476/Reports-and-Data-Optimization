@@ -1,0 +1,79 @@
+{
+  "description": "Mock Looker-style report inventory for BI-Pruner. Exactly two reports (look:201 and look:202) share logically equivalent SQL; projection order and formatting differ. Hash with structuralHashFromSql(sql, 'bigquery') to match ingestion.",
+  "looker_reports": [
+    {
+      "external_id": "look:101",
+      "title": "Daily revenue by region",
+      "owner_email": "ana@acme.example",
+      "last_accessed_at": "2026-05-01T14:00:00.000Z",
+      "sql": "SELECT region, SUM(amount) AS revenue FROM analytics.sales WHERE sale_date >= CURRENT_DATE() - 7 GROUP BY region ORDER BY revenue DESC"
+    },
+    {
+      "external_id": "look:102",
+      "title": "Active subscribers count",
+      "owner_email": "ben@acme.example",
+      "last_accessed_at": "2026-04-20T09:30:00.000Z",
+      "sql": "SELECT COUNT(*) AS subscriber_count FROM analytics.subscriptions WHERE status = 'active' AND ended_at IS NULL"
+    },
+    {
+      "external_id": "look:201",
+      "title": "Customer LTV rollup (variant A)",
+      "owner_email": "data@acme.example",
+      "last_accessed_at": "2026-03-10T11:00:00.000Z",
+      "sql": "SELECT customer_id, SUM(order_total) AS revenue FROM warehouse.fct_orders WHERE order_date >= '2024-01-01' GROUP BY customer_id",
+      "_test_duplicate_group": "pair-1",
+      "_test_note": "Logically identical to look:202 — projection order and whitespace differ."
+    },
+    {
+      "external_id": "look:202",
+      "title": "Customer LTV rollup (variant B)",
+      "owner_email": "data@acme.example",
+      "last_accessed_at": "2026-03-11T08:15:00.000Z",
+      "sql": "SELECT\n  sum(order_total) AS revenue,\n  customer_id\nFROM warehouse.fct_orders\nWHERE order_date >= '2024-01-01'\nGROUP BY customer_id",
+      "_test_duplicate_group": "pair-1",
+      "_test_note": "Logically identical to look:201."
+    },
+    {
+      "external_id": "look:103",
+      "title": "Churn risk scores",
+      "owner_email": "ana@acme.example",
+      "last_accessed_at": "2026-05-12T16:45:00.000Z",
+      "sql": "SELECT user_id, MAX(last_login_at) AS last_seen FROM analytics.events GROUP BY user_id HAVING last_seen < TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 30 DAY)"
+    },
+    {
+      "external_id": "look:104",
+      "title": "Inventory levels by SKU",
+      "owner_email": "ops@widgets.example",
+      "last_accessed_at": "2026-02-28T10:00:00.000Z",
+      "sql": "SELECT sku, warehouse_id, quantity_on_hand FROM supply_chain.inventory_snapshot WHERE snapshot_date = CURRENT_DATE()"
+    },
+    {
+      "external_id": "look:105",
+      "title": "Marketing spend vs conversions",
+      "owner_email": "mkt@widgets.example",
+      "last_accessed_at": "2026-05-13T12:00:00.000Z",
+      "sql": "SELECT campaign_id, SUM(spend_usd) AS spend, SUM(conversions) AS conv FROM marketing.campaign_daily GROUP BY campaign_id"
+    },
+    {
+      "external_id": "look:106",
+      "title": "Support ticket backlog",
+      "owner_email": "support@acme.example",
+      "last_accessed_at": "2026-01-05T17:20:00.000Z",
+      "sql": "SELECT priority, COUNT(*) AS open_tickets FROM support.tickets WHERE status = 'open' GROUP BY priority"
+    },
+    {
+      "external_id": "look:107",
+      "title": "Fulfillment SLA breaches",
+      "owner_email": "ops@widgets.example",
+      "last_accessed_at": "2026-04-18T07:30:00.000Z",
+      "sql": "SELECT fulfillment_center, COUNT(*) AS late_shipments FROM logistics.shipments WHERE promised_date < actual_ship_date AND ship_month = '2026-04' GROUP BY fulfillment_center"
+    },
+    {
+      "external_id": "look:108",
+      "title": "Pipeline by stage",
+      "owner_email": "sales@acme.example",
+      "last_accessed_at": "2026-05-10T15:00:00.000Z",
+      "sql": "SELECT stage, SUM(amount_usd) AS pipeline_value FROM crm.opportunities WHERE is_open = TRUE GROUP BY stage ORDER BY pipeline_value DESC"
+    }
+  ]
+}
