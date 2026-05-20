@@ -10,9 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { PRODUCT_NAME, PRODUCT_NAME_FORMAL } from "@/lib/product-brand";
 import { cn } from "@/lib/utils";
-
-const PRODUCT_NAME = "BI Reports and Data Optimization";
 
 const outcomes = [
   { title: "Less BI clutter", detail: "Retire unused reports safely" },
@@ -171,7 +170,7 @@ export function ProductGuideWidget() {
       <CardContent className="space-y-6">
         <div className="rounded-lg border border-primary/15 bg-primary/5 px-4 py-3 text-sm leading-relaxed">
           <p>
-            <strong className="text-foreground">{PRODUCT_NAME} — explained simply</strong>
+            <strong className="text-foreground">{PRODUCT_NAME_FORMAL} — explained simply</strong>
           </p>
           <p className="mt-2 text-muted-foreground">
             Think of this as a <strong className="text-foreground">health checkup for your BI reports</strong>.

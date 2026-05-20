@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { PRODUCT_NAME } from "@/lib/product-brand";
 import { cn } from "@/lib/utils";
 import { BarChart2, LayoutDashboard, Link2, Settings2 } from "lucide-react";
 
@@ -18,8 +19,12 @@ export function PortalSidebar() {
   return (
     <aside className="flex w-56 shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground">
       <div className="flex h-14 items-center border-b border-sidebar-border px-4">
-        <Link href="/portal" className="font-heading text-sm font-semibold tracking-tight">
-          BI-Pruner
+        <Link
+          href="/portal"
+          className="font-heading text-xs font-semibold leading-snug tracking-tight"
+          title={PRODUCT_NAME}
+        >
+          {PRODUCT_NAME}
         </Link>
       </div>
       <nav className="flex flex-1 flex-col gap-0.5 p-2">
