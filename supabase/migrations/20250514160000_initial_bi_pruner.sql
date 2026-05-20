@@ -1,4 +1,4 @@
--- BI-Pruner: core metadata schema (Supabase / PostgreSQL)
+-- BI Reports and Data Optimization: core metadata schema (Supabase / PostgreSQL)
 -- Organizations, encrypted BI connectors, and ingested report metadata.
 
 create extension if not exists "pgcrypto";

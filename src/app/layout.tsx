@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
+import { PRODUCT_DESCRIPTION, PRODUCT_PAGE_TITLE } from "@/lib/product-brand";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,9 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BI-Pruner — BI observability & technical debt",
-  description:
-    "Enterprise BI usage audits, semantic deduplication, and report lifecycle management for Looker and Tableau.",
+  title: PRODUCT_PAGE_TITLE,
+  description: PRODUCT_DESCRIPTION,
 };
 
 export default function RootLayout({

@@ -3,6 +3,7 @@ import "server-only";
 import type { OrgLifecyclePolicy } from "@/lib/lifecycle/types";
 import type { ReportLifecycleRow } from "@/lib/lifecycle/types";
 import { defaultKeepLinkExpirySec, signKeepPayload } from "@/lib/lifecycle/keep-token";
+import { PRODUCT_NAME } from "@/lib/product-brand";
 
 function appBaseUrl(): string {
   const explicit = process.env.PUBLIC_APP_URL?.trim() || process.env.NEXT_PUBLIC_APP_URL?.trim();
@@ -50,7 +51,7 @@ export async function sendShadowNoticeEmail(
   const to = report.ownerEmail?.trim();
   if (!key || !from || !to) {
     console.warn(
-      `[bi-pruner] Shadow notice (email skipped: set RESEND_API_KEY, RESEND_FROM_EMAIL, and report owner_email). Report ${report.id} "${report.title ?? report.externalId}"`,
+      `[${PRODUCT_NAME}] Shadow notice (email skipped: set RESEND_API_KEY, RESEND_FROM_EMAIL, and report owner_email). Report ${report.id} "${report.title ?? report.externalId}"`,
     );
     return;
   }
@@ -61,7 +62,7 @@ export async function sendShadowNoticeEmail(
     {
       from,
       to: [to],
-      subject: `[BI-Pruner] Report entering shadow soon: ${report.title ?? report.externalId}`,
+      subject: `[${PRODUCT_NAME}] Report entering shadow soon: ${report.title ?? report.externalId}`,
       html: `<p>This report is scheduled to move to <strong>Shadow</strong> after <strong>${shadowAt}</strong> (UTC), per your organization idle policy (${policy.inactivityThresholdDays} days).</p><p><a href="${keepUrl}">Keep this report active</a> (one click, expires automatically).</p>`,
     },
     { Authorization: `Bearer ${key}` },
@@ -74,7 +75,7 @@ export async function sendShadowNoticeSlack(report: ReportLifecycleRow): Promise
     return;
   }
   const keepUrl = buildReportKeepUrl(report);
-  const text = `*BI-Pruner* — report "${report.title ?? report.externalId}" (${report.externalId}) will move to *Shadow* after ${report.shadowAt ?? "TBD"}. <${keepUrl}|Keep active>`;
+  const text = `*${PRODUCT_NAME}* — report "${report.title ?? report.externalId}" (${report.externalId}) will move to *Shadow* after ${report.shadowAt ?? "TBD"}. <${keepUrl}|Keep active>`;
   await postJson(url, { text }, {});
 }
 

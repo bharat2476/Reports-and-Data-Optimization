@@ -1,5 +1,5 @@
 {
-  "description": "Mock Looker-style report inventory for BI-Pruner. Exactly two reports (look:201 and look:202) share logically equivalent SQL; projection order and formatting differ. Hash with structuralHashFromSql(sql, 'bigquery') to match ingestion.",
+  "description": "Mock Looker-style report inventory for BI Reports and Data Optimization. Exactly two reports (look:201 and look:202) share logically equivalent SQL; projection order and formatting differ. Hash with structuralHashFromSql(sql, 'bigquery') to match ingestion.",
   "looker_reports": [
     {
       "external_id": "look:101",

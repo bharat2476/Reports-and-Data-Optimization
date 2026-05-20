@@ -1,8 +1,8 @@
--- BI-Pruner: full schema for Supabase SQL Editor (run once on a new project).
+-- BI Reports and Data Optimization: full schema for Supabase SQL Editor (run once on a new project).
 -- Source: supabase/migrations/20250514160000_initial_bi_pruner.sql
 --         supabase/migrations/20250514170000_lifecycle_columns.sql
 
--- BI-Pruner: core metadata schema (Supabase / PostgreSQL)
+-- BI Reports and Data Optimization: core metadata schema (Supabase / PostgreSQL)
 -- Organizations, encrypted BI connectors, and ingested report metadata.
 
 create extension if not exists "pgcrypto";

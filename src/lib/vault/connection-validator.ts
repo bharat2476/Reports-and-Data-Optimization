@@ -88,7 +88,7 @@ export async function validateLookerConnection(
 
     const notes = [
       "Login and /user read succeeded.",
-      "Use a dedicated API3 credential with viewer-style permissions; BI-Pruner cannot cryptographically prove read-only from this check alone.",
+      "Use a dedicated API3 credential with viewer-style permissions; this platform cannot cryptographically prove read-only from this check alone.",
     ];
     return { ok: true, validatedAt: new Date().toISOString(), notes };
   } catch (e) {
