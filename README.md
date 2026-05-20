@@ -1,4 +1,4 @@
-# BI-Pruner
+# BI Reports and Data Optimization
 
 **BI-Pruner** is a SaaS platform for **BI observability** and **technical debt mitigation**. It connects to enterprise BI tools (Looker, Tableau), audits report usage and definitions, detects semantically duplicate logic, and manages a disciplined report lifecycle so teams reduce latency, metadata bloat, and cloud cost.
 
