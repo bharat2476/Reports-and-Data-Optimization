@@ -2,7 +2,7 @@
 
 **BI-Reports & Data Optimization** is a SaaS platform for **BI observability** and **technical debt mitigation**. It connects to enterprise BI tools (Looker, Tableau), audits report usage and definitions, detects semantically duplicate logic, and manages a disciplined report lifecycle so teams reduce latency, metadata bloat, and cloud cost.
 
-Repository: [github.com/bharat2476/Tech-debt](https://github.com/bharat2476/Tech-debt)
+Repository: [github.com/bharat2476/Reports-and-Data-Optimization](https://github.com/bharat2476/Reports-and-Data-Optimization)
 
 ---
 
@@ -44,7 +44,6 @@ Repository: [github.com/bharat2476/Tech-debt](https://github.com/bharat2476/Tech
 ## Project structure
 
 ```text
-bi-pruner/
 ├── src/
 │   ├── app/portal/          # Admin UI (overview, connectors, settings, ROI)
 │   ├── app/api/               # Portal + worker + public keep-link APIs
@@ -79,7 +78,6 @@ bi-pruner/
 ### 1. Install dependencies
 
 ```bash
-cd bi-pruner
 npm install
 ```
 

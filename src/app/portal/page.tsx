@@ -11,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { ProductGuideWidget } from "@/components/portal/product-guide-widget";
 
 export default async function PortalHomePage() {
   const connectors = await listConnectors();
@@ -72,6 +73,7 @@ export default async function PortalHomePage() {
           </CardContent>
         </Card>
       </div>
+      <ProductGuideWidget />
     </div>
   );
 }
